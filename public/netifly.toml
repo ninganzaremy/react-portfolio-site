@@ -1,10 +1,10 @@
 [[redirects]]
-  from = "/*"
+  from = "/"
   to = "/home-dark"
   status = 200
 
 
 [[redirects]]
-  from = "/*"
+  from = "/"
   to = "/home-light" 
   status = 200
