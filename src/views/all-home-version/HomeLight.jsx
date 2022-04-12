@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import Hero from "../../components/hero/HeroLight";
 import Index from "../../components/about/index";
@@ -23,9 +24,9 @@ const HomeLight = () => {
 	return (
 		<div className="green">
 			<div className="demo-sticker">
-				<a href="/home-dark">
+				<Link to="/home-dark">
 					<i className="fa fa-moon-o" aria-hidden="true"></i>
-				</a>
+				</Link>
 			</div>
 			<AnimatedCursor innerSize={8} outerSize={44} color="114, 182, 38" outerAlpha={0.3} innerScale={0.7} outerScale={1.2} />
 			<Tabs>
