@@ -1,7 +1,6 @@
 import React from "react";
 import HomeLight from "../views/all-home-version/HomeLight";
 import HomeDark from "../views/all-home-version/HomeDark";
-import NotFound from "../views/NotFound";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ScrollTopBehaviour from "../components/ScrollTopBehaviour";
 
@@ -12,9 +11,8 @@ const Routes = () => {
 				<ScrollTopBehaviour />
 				<Switch>
 					<Route exact path="/" component={HomeDark} />
-					<Route path="/home-dark/" component={HomeDark} />
 					<Route path="/home-light/" component={HomeLight} />
-					<Route component={NotFound} />
+					<Route path="/home-dark/" component={HomeDark} />
 				</Switch>
 			</Router>
 		</>
