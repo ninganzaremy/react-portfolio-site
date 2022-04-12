@@ -14,7 +14,6 @@ const Routes = () => {
 					<Route exact path="/" component={HomeDark} />
 					<Route path="/home-dark/" component={HomeDark} />
 					<Route path="/home-light/" component={HomeLight} />
-
 					<Route component={NotFound} />
 				</Switch>
 			</Router>
