@@ -21,7 +21,7 @@ const HomeDark = () => {
 	return (
 		<div className="yellow">
 			<div className="demo-sticker">
-				<Link to="/home-light">
+				<Link to={`/home-light`}>
 					<i className="fa fa-lightbulb-o" aria-hidden="true"></i>
 				</Link>
 			</div>
