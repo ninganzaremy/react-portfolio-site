@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import Hero from "../../components/hero/Hero";
 import Index from "../../components/about/index";
@@ -21,9 +20,9 @@ const HomeDark = () => {
 	return (
 		<div className="yellow">
 			<div className="demo-sticker">
-				<Link to={`/home-light`}>
+				<a href="/home-light">
 					<i className="fa fa-lightbulb-o" aria-hidden="true"></i>
-				</Link>
+				</a>
 			</div>
 			<Tabs>
 				<div className="header">
