@@ -35,7 +35,7 @@ const ModalNineContent = () => {
 							<i className="fa fa-external-link pr-2"></i>
 							<span className="project-label"> </span>:{" "}
 							<span className="ft-wt-600 uppercase">
-								<a href="https://ninganzaremy.com" target="_blank" rel="noreferrer">
+								<a href="https://remys-real-estate.netlify.app" target="_blank" rel="noreferrer">
 									Site
 								</a>
 							</span>
