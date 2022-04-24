@@ -3,7 +3,7 @@ import React from "react";
 const experienceContent = [
 	{
 		year: "   01/2022 - Present",
-		position: " Web Developer",
+		position: " Web Application Developer ",
 		compnayName: "Arizona State University",
 		details: `Developing, testing and implementing  new software programs.
 Designing and updating software database. This includes, but is not limited to: Software Applications, Web Sites, Data Communication Processes and User Interfaces.
