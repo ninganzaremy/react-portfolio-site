@@ -18,7 +18,7 @@ const ModalEightContent = () => {
 							<i className="fa fa-github pr-2"></i>
 							<span className="project-label"> </span>:{" "}
 							<span className="ft-wt-600 uppercase">
-								<a href="https://niganzaremy.com" target="_blank" rel="noreferrer">
+								<a href="https://ninganzaremy.com" target="_blank" rel="noreferrer">
 									Code
 								</a>
 							</span>
@@ -35,7 +35,7 @@ const ModalEightContent = () => {
 							<i className="fa fa-external-link pr-2"></i>
 							<span className="project-label"> </span>:{" "}
 							<span className="ft-wt-600 uppercase">
-								<a href="https://niganzaremy.com" target="_blank" rel="noreferrer">
+								<a href="https://ninganzaremy.com" target="_blank" rel="noreferrer">
 									Site
 								</a>
 							</span>
