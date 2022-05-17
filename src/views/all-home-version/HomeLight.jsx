@@ -22,7 +22,7 @@ const HomeLight = () => {
 
 	return (
 		<div className="green">
-			<div className="demo-sticker">
+			<div className="demo-sticker" style={{ background: "#72b626" }}>
 				<a href="/">
 					<i className="fa fa-moon-o" aria-hidden="true"></i>
 				</a>
