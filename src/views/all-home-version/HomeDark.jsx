@@ -19,7 +19,7 @@ const menuItem = [
 const HomeDark = () => {
 	return (
 		<div className="yellow">
-			<div className="demo-sticker">
+			<div className="demo-sticker" style={{ background: "#ffb400" }}>
 				<a href="/home-light">
 					<i className="fa fa-lightbulb-o" aria-hidden="true"></i>
 				</a>

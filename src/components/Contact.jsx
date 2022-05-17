@@ -7,10 +7,26 @@ const Contact = () => {
 
 		formState: { errors },
 	} = useForm();
+	function encode(data) {
+		return Object.keys(data)
+			.map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+			.join("&");
+	}
+
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		fetch("/", {
+			method: "POST",
+			headers: { "Content-Type": "application/x-www-form-urlencoded" },
+			body: encode({
+				"form-name": event.target.getAttribute("name"),
+			}),
+		}).catch((error) => alert(error));
+	};
 
 	return (
 		<>
-			<form className="contactform" action="server.php" method="POST">
+			<form className="contactform" data-netlify="true" name="myform" method="post" onSubmit={handleSubmit}>
 				<div className="row">
 					<div className="col-12 col-md-6">
 						<div className="form-group">
