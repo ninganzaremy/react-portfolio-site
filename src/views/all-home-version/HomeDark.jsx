@@ -1,5 +1,7 @@
 import React from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import MessengerCustomerChat from "react-messenger-customer-chat";
+
 import Hero from "../../components/hero/Hero";
 import Index from "../../components/about/index";
 import Address from "../../components/Address";
@@ -130,6 +132,7 @@ const HomeDark = () => {
 					{/* Blog Content Ends */}
 				</div>
 			</Tabs>
+			<MessengerCustomerChat pageId="remi.ni.14" appId="3362467380591308" htmlRef="<REF_STRING>" />,
 		</div>
 	);
 };
