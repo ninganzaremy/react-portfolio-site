@@ -1,72 +1,53 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, ValidationError } from "@formspree/react";
 
-const Contact = () => {
-	const {
-		register,
-		// handleSubmit,
-		formState: { errors },
-	} = useForm();
-
-	//const onSubmit = (data, e) => {
-	//	e.target.reset();
-	//	console.log("Message submited: " + JSON.stringify(data));
-	//};
+function Contact() {
+	const [state, handleSubmit] = useForm("xnqqywgb");
+	if (state.succeeded) {
+		return <p style={{ color: "white", background: "green", padding: "2rem 2rem", textAlign: "center" }}>Thanks, we'll reach out soon.</p>;
+	}
 
 	return (
 		<>
-			<form className="contactform" action="https://formspree.io/xnqqywgb" method="post">
+			<form className="contactform" onSubmit={handleSubmit}>
 				<div className="row">
 					<div className="col-12 col-md-6">
 						<div className="form-group">
-							<input {...register("name", { required: true })} type="text" name="name" placeholder="YOUR NAME" />
-							{errors.name && errors.name.type === "required" && <span className="invalid-feedback">Name is required</span>}
+							<input id="name" type="text" name="name" required placeholder="YOUR NAME" />
+							<ValidationError prefix="name" field="name" errors={state.errors} />
 						</div>
 					</div>
 					{/* End .col */}
 
 					<div className="col-12 col-md-6">
 						<div className="form-group">
-							<input
-								{...register(
-									"email",
-									{
-										required: "Email is Required",
-										pattern: {
-											value: /\S+@\S+\.\S+/,
-											message: "Entered value does not match email format",
-										},
-									},
-									{ required: true },
-								)}
-								type="email"
-								name="email"
-								placeholder="YOUR EMAIL"
-							/>
-							{errors.email && <span className="invalid-feedback">{errors.email.message}</span>}
+							<input type="email" name="email" required placeholder="YOUR EMAIL" />
+							<ValidationError prefix="Email" field="email" errors={state.errors} />
 						</div>
 					</div>
 					{/* End .col */}
 
 					<div className="col-12 col-md-12">
 						<div className="form-group">
-							<input {...register("subject", { required: true })} type="text" name="subject" placeholder="YOUR SUBJECT" />
-							{errors.subject && <span className="invalid-feedback">Message is required.</span>}
+							<input type="text" id="subject" name="subject" required placeholder="YOUR SUBJECT" />
+							<ValidationError prefix="Subject" field="subject" errors={state.errors} />
 						</div>
 					</div>
 					{/* End .col */}
 
 					<div className="col-12">
 						<div className="form-group">
-							<textarea {...register("message", { required: true })} name="message" placeholder="YOUR MESSAGE"></textarea>
-							{errors.message && <span className="invalid-feedback">Message is required.</span>}
+							<textarea id="message" name="message" required placeholder="YOUR MESSAGE" />
+							<ValidationError prefix="Message" field="message" errors={state.errors} />
 						</div>
 					</div>
 					{/* End .col */}
 
 					<div className="col-12">
-						<button type="submit" className="button">
-							<span className="button-text">Send Message</span>
+						<button type="submit" disabled={state.submitting} className="button">
+							<span className="button-text" required>
+								Send Message
+							</span>
 							<span className="button-icon fa fa-send"></span>
 						</button>
 					</div>
@@ -77,6 +58,6 @@ const Contact = () => {
 			{/* End contact */}
 		</>
 	);
-};
+}
 
 export default Contact;
