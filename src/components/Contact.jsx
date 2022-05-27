@@ -4,29 +4,18 @@ import { useForm } from "react-hook-form";
 const Contact = () => {
 	const {
 		register,
-
+		// handleSubmit,
 		formState: { errors },
 	} = useForm();
-	function encode(data) {
-		return Object.keys(data)
-			.map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-			.join("&");
-	}
 
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		fetch("/", {
-			method: "POST",
-			headers: { "Content-Type": "application/x-www-form-urlencoded" },
-			body: encode({
-				"form-name": event.target.getAttribute("name"),
-			}),
-		}).catch((error) => alert(error));
-	};
+	//const onSubmit = (data, e) => {
+	//	e.target.reset();
+	//	console.log("Message submited: " + JSON.stringify(data));
+	//};
 
 	return (
 		<>
-			<form className="contactform" data-netlify="true" name="myform" method="post" onSubmit={handleSubmit}>
+			<form className="contactform" action={process.env.REACT_APP_API_ID} method="post">
 				<div className="row">
 					<div className="col-12 col-md-6">
 						<div className="form-group">
