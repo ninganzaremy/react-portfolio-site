@@ -19,41 +19,4 @@
 	<body>
 		<div id="root"></div>
 	</body>
-	<script src="%REACT_APP_API_CALL%" defer></script>
-	<script>
-		window.formbutton =
-			window.formbutton ||
-			function () {
-				(formbutton.q = formbutton.q || []).push(arguments);
-			};
-		formbutton("create", {
-			theme: "classic",
-			styles: {
-				button: {
-					background: "#ffb400",
-					bottom: "3rem",
-					height: "50px",
-					width: "50px",
-					right: "20px",
-					margin: "22px 0px 22px 22px",
-					cursor: "pointer",
-				},
-				title: {
-					background: "#444",
-				},
-			},
-			action: "%REACT_APP_API_ID%",
-			onResponse: function (ok, setStatus) {
-				if (ok) {
-					setStatus("Your request was received. We'll be in touch shortly.");
-				} else {
-					try {
-						setStatus(response.data.error);
-					} catch {
-						setStatus("Oops, there was an error!");
-					}
-				}
-			},
-		});
-	</script>
 </html>
