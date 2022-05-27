@@ -15,8 +15,7 @@ const Contact = () => {
 
 	return (
 		<>
-			{process.env.NODE_ENV}
-			<form className="contactform" action={process.env.REACT_APP_API_ID} method="post">
+			<form className="contactform" action="https://formspree.io/xnqqywgb" method="post">
 				<div className="row">
 					<div className="col-12 col-md-6">
 						<div className="form-group">
