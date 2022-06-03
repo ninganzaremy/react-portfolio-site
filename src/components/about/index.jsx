@@ -3,6 +3,7 @@ import Achievements from "./Achievements";
 import Education from "./Education";
 import Experience from "./Experience";
 import PersonalInfo from "./PersonalInfo";
+import Social from "../Social";
 import Skills from "./Skills";
 
 const index = () => {
@@ -24,12 +25,18 @@ const index = () => {
 							</div>
 							{/* image for mobile menu */}
 
-							<div className="col-12">
+							<div className="col-12 text-center">
 								<PersonalInfo />
+							</div>
+							<div className="col-12 text-center">
+								<div className="contact">
+									{/*  Left Side Starts */}
+									<Social />
+								</div>
 							</div>
 							{/* End personal info */}
 
-							<div className="col-12 mt-1">
+							<div className="col-12 mt-1 text-center">
 								<a className="button" href="img/cv.webp" download>
 									<span className="button-text">Download CV</span>
 									<span className="button-icon fa fa-download"></span>
