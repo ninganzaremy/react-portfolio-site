@@ -7,23 +7,21 @@ import Portfolio from "../../components/portfolio/Portfolio";
 import Blog from "../../components/blog/Blog";
 import Contact from "../../components/Contact";
 import Social from "../../components/Social";
+import SwitchDark from "../../components/switch/SwitchDark";
 
 const menuItem = [
 	{ icon: "fa-home", menuName: "Home" },
 	{ icon: "fa-user", menuName: "About" },
 	{ icon: "fa-briefcase", menuName: "Portfolio" },
 	{ icon: "fa-envelope-open", menuName: "Contact" },
-	{ icon: "fa-rss", menuName: "Blog" },
+	{ icon: "fa fa-comments", menuName: "Blog" },
 ];
 
 const HomeDark = () => {
 	return (
 		<div className="yellow">
-			<div className="demo-sticker" style={{ background: "#ffb400" }}>
-				<a href="/home-light">
-					<i className="fa fa-lightbulb-o" aria-hidden="true"></i>
-				</a>
-			</div>
+			<SwitchDark />
+			{/* End Switcher */}
 			<Tabs>
 				<div className="header">
 					<TabList className=" icon-menu  revealator-slideup revealator-once revealator-delay1">
