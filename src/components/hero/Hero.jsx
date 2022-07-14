@@ -7,7 +7,7 @@ const heroContent = {
 	heroMobileImage: "me-mobile",
 	heroTitleName: "Remy Ninganza",
 	heroDesignation: "Web Developer ",
-	heroDescriptions: `Web Application Developer | AWS Certified Developer focused on crafting clean & user‑friendly experiences, I am passionate about building excellent software that improves the live of those around me. Proficient at working with cutting-edge technology in a fast-paced environment with an innate ability to learn new tools.
+	heroDescriptions: `Web Application Developer | AWS Certified Developer focused on crafting clean & user‑friendly Serverless Web Applications. I'm passionate about building excellent software that improves the live of those around me. Proficient at working with cutting-edge technology in a fast-paced environment with an innate ability to learn new tools.
 `,
 	heroBtn: "more about me",
 };
