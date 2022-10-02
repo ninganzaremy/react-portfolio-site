@@ -230,7 +230,7 @@ const AllBlogData = () => {
 					<p> especially if your career path is making you code less (i.e., you’re in a very senior role, you’re in a more managerial role, you’re in a more product-focused role). Coding is a practiced skill, and it’s easy to get rusty at it. The good news is that it’s just as easy to get rid of the rust.</p>
 				</section>
 			),
-			quote: "There you have it: 9 passive-but-not-really income ideas for software engineers!",
+			quote: "There you have it,5 things to do to become a better software engineer!",
 		},
 		{
 			id: 4,
