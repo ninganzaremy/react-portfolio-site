@@ -2,7 +2,7 @@
 .theme-switcher-label {
 	cursor: pointer;
 	position: fixed;
-	right: 30px;
+	right: 15px;
 	top: 5.5rem;
 	z-index: 99;
 	width: 50px;
@@ -19,10 +19,12 @@
 		background-color: var(--main-primary-color);
 	}
 
-	@media (max-width: 1199px) {
+	@media (max-width: 991px) {
+		z-index: 99;
 		width: 45px;
 		height: 45px;
-		z-index: 99;
+		top: 21px;
+		right: 15px;
 	}
 
 	.switch-handle {
