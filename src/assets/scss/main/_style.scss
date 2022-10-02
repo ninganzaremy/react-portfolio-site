@@ -1270,7 +1270,7 @@ body.light .contact .custom-span-contact a {
 		min-height: 227px;
 	}
 	@media screen and (max-width: 450px) {
-		min-height: 218px;
+		min-height: 208px;
 	}
 }
 
@@ -1287,7 +1287,8 @@ body.light .contact .custom-span-contact a {
 	transition: 0.3s;
 }
 
-.blog .post-content .entry-content p {
+.blog .post-content .entry-content {
+	white-space: pre;
 	margin: 15px 0 5px;
 	color: rgba(255, 255, 255, 0.8);
 }
@@ -1348,10 +1349,18 @@ body.light .contact .custom-span-contact a {
 }
 
 .blog-post {
+	.top {
+		padding: 5px 10px 10px 10px;
+
+		//display: flex;
+		//align-items: center;
+		//justify-content: center;
+	}
 	.meta {
 		color: #eee;
 		font-size: 13px;
 	}
+
 	.img-fluid {
 		@media (min-width: 1350px) {
 			background: #ddd;
