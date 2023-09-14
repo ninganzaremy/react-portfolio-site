@@ -6,8 +6,10 @@ const heroContent = {
 	heroImage: "img/hero/me.png",
 	heroMobileImage: "me-mobile",
 	heroTitleName: "Remy Ninganza",
-	heroDesignation: "Web Developer ",
-	heroDescriptions: `Web Application Developer | AWS Certified Developer focused on crafting clean & user‑friendly Serverless Web Applications. I'm passionate about building excellent software that improves the live of those around me. Proficient at working with cutting-edge technology in a fast-paced environment with an innate ability to learn new tools.
+	heroDesignation: "Software Developer ",
+	heroDescriptions: `Full-Stack Software Developer | AWS Certified Developer
+With a deep-rooted expertise in both front-end and back-end development, I specialize in delivering end-to-end solutions — from designing intuitive front-end user interfaces to architecting robust back-end infrastructures. 
+Being an AWS Certified Developer, my full-stack capabilities are further amplified by cloud-optimized, scalable deployments.
 `,
 	heroBtn: "more about me",
 };
@@ -31,7 +33,7 @@ const Hero = () => {
 						<img src={`img/hero/${heroContent.heroMobileImage}.jpg`} className="img-fluid main-img-mobile d-sm-block d-lg-none" alt="hero man" />
 
 						<h1 className="text-uppercase poppins-font">
-							I'm {heroContent.heroTitleName}.<span>{heroContent.heroDesignation}</span>
+							I'm {heroContent.heroTitleName}.<span style={{ fontSize: '2rem' }}>{heroContent.heroDesignation}</span>
 						</h1>
 						<p className="open-sans-font">{heroContent.heroDescriptions}</p>
 						<button className="button" onClick={toggleModalOne}>
