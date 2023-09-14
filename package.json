@@ -1,6 +1,7 @@
 {
 	"name": "remy-site",
 	"private": true,
+	"license": "MIT",
 	"dependencies": {
 		"@emailjs/browser": "^3.6.2",
 		"@testing-library/jest-dom": "^5.11.4",
