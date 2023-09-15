@@ -3,7 +3,7 @@ import React from "react";
 const experienceContent = [
 	{
 		year: "   01/2022 - Present",
-		position: " Web Application Developer ",
+		position: " Software Developer ",
 		companyName: "Arizona State University",
 		details: [
 			"Full-Stack Development: Design, build and maintain applications using Java, JavaScript, React.js, Node.js, and Microsoft SQL Server. Familiar with Tomcat server hosting and AWS deployments. Employ Git for version control and team collaboration",
