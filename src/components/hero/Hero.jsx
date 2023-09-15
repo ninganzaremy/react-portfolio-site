@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import Modal from "react-modal";
 import Index from "../../components/about/index";
 
@@ -33,7 +33,7 @@ const Hero = () => {
 						<img src={`img/hero/${heroContent.heroMobileImage}.jpg`} className="img-fluid main-img-mobile d-sm-block d-lg-none" alt="hero man" />
 
 						<h1 className="text-uppercase poppins-font">
-							I'm {heroContent.heroTitleName}.<span style={{ fontSize: '2rem' }}>{heroContent.heroDesignation}</span>
+							{heroContent.heroTitleName}<span style={{ fontSize: '2rem' }}>{heroContent.heroDesignation}</span>
 						</h1>
 						<p className="open-sans-font">{heroContent.heroDescriptions}</p>
 						<button className="button" onClick={toggleModalOne}>
