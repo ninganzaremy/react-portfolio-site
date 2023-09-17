@@ -6,13 +6,23 @@ const experienceContent = [
 		position: " Software Developer ",
 		companyName: "Arizona State University",
 		details: [
-			"Full-Stack Development: Design, build and maintain applications using Java, JavaScript, React.js, Node.js, and Microsoft SQL Server. Familiar with Tomcat server hosting and AWS deployments. Employ Git for version control and team collaboration",
+			"Full-Stack Development: Design, build and maintain applications using Java, JavaScript, React.js, Node.js, and Microsoft SQL Server. Leverage Tomcat server hosting and AWS deployments. Employ Git for version control and team collaboration",
 			"Cloud & Performance: Implement Java batch applications via AWS Lambda triggers, enhancing stateless code execution efficiency",
 			" React.js Refactoring: Converted a sizable Vue codebase to a more efficient React setup.Designed unified table components leveraging specialized React libraries to manage and distribute data.Integrated proprietary components sourced from private packages.This refactoring resulted in a 40% codebase reduction",
 			" Code Quality & Mentorship: Regularly conduct code reviews to ensure best practices and high-quality code.Play a pivotal role in onboarding and setting up new software developers, ensuring a smooth transition and integration into the team",
 			" Debugging & Monitoring: Skilled in troubleshooting across diverse environments; leveraging Splunk for log analysis and investigation in case of hosted environment issues",
 			" Automation & Productivity: Implement automation strategies with Google Scripts, achieving a 60% boost in team operational efficiency"
 		],
+	},
+	{
+		year: "   08/2020 - 01/202",
+		position: "Freelance Software Developer ",
+		companyName: "UpWork & Private Clients",
+		details: [
+			"Websites Design & Implementation: Designed and wrote code for 10+ new websites and Landing Pages by deploying CSS, HTML, JavaScript and WordPress",
+"Building sales funnels: Customized and Optimized sales funnels for affiliate marketers resulting in a 35% increase in conversion rates and a 50% boost in revenue",
+"Financial Tracking Tool Development   : Developed a Google Script-based tracker for income and expenses, enhancing financial transparency by 25% and enabling instant ROI insights"
+],
 	},
 	{
 		year: "05/2021 - 12/2021",
@@ -26,7 +36,7 @@ const experienceContent = [
 	{
 		year: "01/2020 - 04/2021",
 		position: "Data Analyst",
-		companyName: "Apple",
+		companyName: "Apple ( Via Apex Systems )",
 		details: [
 			"Cross-Functional Collaboration: Engaged with a multifaceted team, concentrating on in-depth assessment of Maps services and features",
 
