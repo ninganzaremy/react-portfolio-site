@@ -1,5 +1,4 @@
-# .github/workflows/netlify-deploy.yml
-name: Deploy React App to Netlify
+name: Build and Deploy React App to Netlify
 
 on:
   push:
@@ -7,8 +6,8 @@ on:
       - main
 
 jobs:
-  deploy:
-    name: Deploy to Netlify
+  build-and-deploy:
+    name: Build React App and Deploy to Netlify
     runs-on: ubuntu-latest
 
     steps:
@@ -16,17 +15,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Setup Node.js for installing Netlify CLI
+      # Setup Node.js for building React app
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      # Install Netlify CLI
+      # Install Netlify CLI globally
       - name: Install Netlify CLI
         run: yarn global add netlify-cli
 
-      # Authenticate and deploy to Netlify
+      # Install dependencies using yarn
+      - name: Install dependencies
+        run: yarn install
+
+      # Build React app
+      - name: Build the app
+        run: yarn build
+
+      # Deploy the built app to Netlify
       - name: Deploy to Netlify
         run: netlify deploy --prod
         env:
