@@ -1,0 +1,43 @@
+# .github/workflows/netlify-deploy.yml
+name: Build and Deploy React App to Netlify
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    name: Build React App and Deploy to Netlify
+    runs-on: ubuntu-latest
+
+    steps:
+      # Check out the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Setup Node.js for building React app
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Install dependencies using yarn and build React app
+      - name: Install dependencies and build
+        run: |
+          yarn install
+          yarn build
+
+      # Deploy the built app to Netlify
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v2.0
+        with:
+          publish-dir: './build'
+          production-branch: main
+          deploy-message: "Deploy from GitHub Actions"
+          enable-pull-request-comment: false
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
