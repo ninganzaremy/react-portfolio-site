@@ -88,8 +88,8 @@ const HomeDark = () => {
 							<div className="row">
 								{/*  Left Side Starts */}
 								<div className="col-12 col-lg-4">
-									<h3 className="text-uppercase custom-title mb-0 ft-wt-600 pb-3">LET'S CONNECT 😉</h3>
-									<p className="open-sans-font mb-4">Feel free to get in touch with me. I am always open to discussing new projects, creative ideas or opportunities to be part of your visions.</p>
+									<h3 className="text-uppercase custom-title mb-0 ft-wt-600 pb-3">LET'S CONNECT 🤝</h3>
+									<p className="open-sans-font mb-4">Drop a 'hi' or share your thoughts! I'm always keen on discussing new projects, creative ideas, or ways to help you bring your vision to life. Whether it's collaboration, a potential partnership, or tackling a unique challenge, I'm here to listen. Together, we can make great things happen.</p>
 									<Address />
 									{/* End Address */}
 
