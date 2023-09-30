@@ -1,77 +1,85 @@
-// switcherr
 .theme-switcher-label {
-	cursor: pointer;
-	position: fixed;
-	right: 15px;
-	top: 5.5rem;
-	z-index: 99;
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: #4b4b4b;
-	border-left: 0;
-	transition: 0.3s;
-	transform: translateY(-30%);
-	&:hover {
-		background-color: var(--main-primary-color);
-	}
+  cursor: pointer;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--main-gradient-color);
+  border-left: 0;
+  transition: 0.3s;
+  transform: translateY(-30%);
 
-	@media (max-width: 991px) {
-		z-index: 99;
-		width: 45px;
-		height: 45px;
-		top: 21px;
-		right: 15px;
-	}
+  &:hover {
+    background: var(--main-gradient-color);
+  }
 
-	.switch-handle {
-		border-radius: 50%;
-		position: relative;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		transition: all 0.3s ease-in-out;
+  @media (max-width: 991px) {
+    z-index: 99;
+    width: 45px;
+    height: 45px;
+    top: 15px;
+    right: 0;
+  }
 
-		i {
-			position: absolute;
-			font-size: 28px;
-			transition: 0.3s;
-			left: 1px;
-			top: -1px;
-		}
-	}
+  .switch-handle {
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
 
-	.theme-switcher {
-		display: none;
-	}
-	.light-text {
-		color: #000;
-	}
-	.dark-text {
-		color: #666;
-	}
-	&.active {
-		background-color: #eee;
-		.light-text {
-			visibility: hidden;
-			opacity: 0;
-		}
-		.dark-text {
-			visibility: visible;
-			opacity: 1;
-		}
-		&:hover {
-			background-color: var(--main-primary-color);
-		}
-	}
-	.dark-text {
-		visibility: hidden;
-		opacity: 0;
-	}
-	input {
-		cursor: pointer;
-	}
+    i {
+      position: absolute;
+      font-size: 28px;
+      transition: 0.3s;
+      left: 1px;
+      top: -1px;
+    }
+  }
+
+  .theme-switcher {
+    display: none;
+  }
+
+  .light-text {
+    color: #000;
+  }
+
+  .dark-text {
+    color: #666;
+  }
+
+  &.active {
+    background: var(--main-gradient-color);
+
+    .light-text {
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .dark-text {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    &:hover {
+      background: var(--main-gradient-color);
+    }
+  }
+
+  .dark-text {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  input {
+    cursor: pointer;
+  }
 }

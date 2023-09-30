@@ -1,0 +1,43 @@
+html {
+  overflow-y: scroll;
+}
+
+/* For screens larger than 991px (desktop) */
+@media (min-width: 991px) {
+  /* Set up grid for your menu */
+  .header .icon-menu {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr);
+    justify-items: center;
+    align-items: center;
+    a {
+      text-decoration: none !important;
+    }
+  }
+
+  /* Ensure icons are hidden on desktop */
+  body.light .header ul.icon-menu li.icon-box.react-tabs__tab--selected,
+  .header ul.icon-menu li.icon-box.react-tabs__tab--selected {
+    background: none !important;
+    &:hover {
+      background: none !important;
+    }
+  }
+  /* Ensure icons are hidden on desktop */
+  body.light .header ul.icon-menu li.icon-box:hover,
+  .header ul.icon-menu li.icon-box:hover {
+    background: none !important;
+  }
+  body.light .header ul.icon-menu li.icon-box,
+  .header ul.icon-menu li.icon-box {
+    background: none;
+    i {
+      display: none;
+    }
+    h2 {
+      position: static;
+      text-align: center;
+      list-style: none;
+    }
+  }
+}

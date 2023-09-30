@@ -1,5 +1,5 @@
 /* =================================================================== */
-/* YELLOW var(--main-primary-color)
+/* YELLOW var(--main-gradient-color)
 ====================================================================== */
 
 .home h1,
@@ -8,12 +8,14 @@
 #menu li.active a,
 body.light #menu li.active a,
 .blog .post-container:hover .post-content .entry-header h3 a,
+.blog .post-content .entry-header h3:hover,
+body.light .blog .post-content .entry-header h3:hover,
 .blog .post-content .entry-header h3 a:hover,
 .contact .custom-span-contact i,
 .portfolio .slideshow a,
 .portfolio .grid figure:hover figcaption,
 .blog-post .meta i {
-  color: var(--main-primary-color);
+  @extend .main-gradient-text-color;
 }
 .home .home-details h1:before,
 .about .resume-box .icon,
@@ -28,37 +30,38 @@ body.light.blog .page-item.active .page-link,
 .header ul.icon-menu li.icon-box.react-tabs__tab--selected,
 .header ul.icon-menu li.icon-box:hover,
 .btn,
-.header .icon-box h2,
 .home .color-block,
 .title-section hr,
 .portfolio .slideshow .carousel-indicators li.active,
 .button:before,
 .button-icon {
-  background-color: var(--main-primary-color);
+  background: var(--main-gradient-color);
 }
 @media screen and (max-width: 991px) {
   .header ul.icon-menu li.icon-box.react-tabs__tab--selected,
   .header ul.icon-menu li.icon-box:hover,
   body.light .header ul.icon-menu li.icon-box.react-tabs__tab--selected,
   body.light .header ul.icon-menu li.icon-box:hover {
-    background: var(--main-primary-color) !important;
+    background: var(--main-gradient-color) !important;
   }
 }
-.contact .contactform input[type="text"]:focus,
-.contact .contactform input[type="email"]:focus,
+.contact .contactform input[type='text']:focus,
+.contact .contactform input[type='email']:focus,
 .contact .contactform textarea:focus,
-body.light.contact .contactform input[type="text"]:focus,
-body.light.contact .contactform input[type="email"]:focus,
+body.light.contact .contactform input[type='text']:focus,
+body.light.contact .contactform input[type='email']:focus,
 body.light.contact .contactform textarea:focus,
 .blog .page-item.active .page-link,
 .blog .page-link:hover,
 body.light.blog .page-item.active .page-link,
 body.light.blog .page-link:hover,
 .button {
-  border: 1px solid var(--main-primary-color);
+  border: 1px solid var(--neon-color);
 }
 .blog .post-thumb {
-  border-bottom: 5px solid var(--main-primary-color);
+  background-image: var(--main-gradient-color);
+  background-repeat: no-repeat;
+  background-position: bottom;
 }
 .pie,
 .c100 .bar,
@@ -112,5 +115,8 @@ body.light.blog .page-link:hover,
 .c100.p98 .fill,
 .c100.p99 .fill,
 .c100.p100 .fill {
-  border: 0.08em solid var(--main-primary-color);
+  background-image: var(--main-gradient-color);
+  background-clip: border-box;
+  background-origin: border-box;
+  border: 0.08em solid transparent;
 }

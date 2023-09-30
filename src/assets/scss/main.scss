@@ -1,16 +1,17 @@
 /*----FontAwesome-------*/
-@import url("../fonts/font-awesome/css/font-awesome.min.css");
-@import "bootstrap/dist/css/bootstrap.css";
+@import url('../fonts/font-awesome/css/font-awesome.min.css');
+@import 'bootstrap/dist/css/bootstrap.css';
 
 // Style Scss
-@import "main/modal";
-@import "main/portfolio-modal";
-@import "main/portfolio";
-@import "main/404";
-@import "main/circle";
-@import "main/slick";
-@import "main/switcher";
-@import "main/style";
+@import 'main/modal';
+@import 'main/portfolio-modal';
+@import 'main/portfolio';
+@import 'main/404';
+@import 'main/circle';
+@import 'main/slick';
+@import 'main/switcher';
+@import 'main/style';
+@import 'main/grid-action';
 
 // skin
-@import "main/skins/yellow";
+@import 'main/skins/yellow';
