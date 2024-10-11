@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const NotFound = () => {
   return (
@@ -7,7 +7,7 @@ const NotFound = () => {
       <div
         className="hero bg-image"
         style={{
-          backgroundImage: `url(${process.env.PUBLIC_URL + "img/1.jpg"})`,
+          backgroundImage: `url(${process.env.PUBLIC_URL + 'img/1.jpg'})`,
         }}
       >
         <div className="content">
