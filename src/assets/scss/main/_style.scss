@@ -914,6 +914,9 @@ body.light {
 	}
 }
 
+.typewriter-container {
+	min-height: 3rem;
+}
 @media screen and (max-width: 768px) {
 	.tech-grid {
 		grid-template-columns: 1fr;

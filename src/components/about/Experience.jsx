@@ -17,54 +17,57 @@ const experienceContent = [
    },
    {
       year: "01/2021 - 01/2022",
-      position: " Quality Assurance Engineer",
+      position: "Quality Assurance Engineer",
       companyName: "Uber Technologies",
       details: [
-         " ➤ Tested and validated integrations between ServiceNow, Salesforce, and Zendesk, optimizing system efficiency and interoperability.",
-         "➤ Conducted audits of support tickets to ensure strict compliance with internal guidelines, upholding quality and service standards.",
-         "➤ Collaborated with engineering teams by identifying and documenting system integration issues, providing detailed insights for timely resolution.",
+         "➤ Integration Testing: Tested and validated integrations between ServiceNow, Salesforce, and Zendesk, optimizing system efficiency and interoperability.",
+         "➤ Quality Assurance: Conducted audits of support tickets to ensure strict compliance with internal guidelines, upholding quality and service standards.",
+         "➤ Issue Resolution: Collaborated with engineering teams by identifying and documenting system integration issues, providing detailed insights for timely resolution.",
       ],
    },
    {
       year: "01/2020 - 04/2021",
       position: "Data Analyst",
-      companyName: "Apple ( Via Apex Systems )",
+      companyName: "Apple (Via Apex Systems)",
       details: [
-         " ➤ Collaborated with cross-functional teams, resulting in a 20% improvement in the accuracy of Apple Maps services.",
-         "➤ Facilitated a feedback loop between Engineering and Product teams, boosting platform engagement by 10%.",
-
-         "➤ Ensured a 98% consistency rate in data annotations by reviewing and providing detailed feedback to peer contributors.",
+         "➤ Cross-Functional Collaboration: Collaborated with cross-functional teams, resulting in a 20% improvement in the accuracy of Apple Maps services.",
+         "➤ Platform Engagement: Facilitated a feedback loop between Engineering and Product teams, boosting platform engagement by 10%.",
+         "➤ Quality Control: Ensured a 98% consistency rate in data annotations by reviewing and providing detailed feedback to peer contributors.",
       ],
    },
 ];
 
 const Experience = () => {
-  return (
-    <ul>
-      {experienceContent.map((val, i) => (
-        <li key={i}>
-          <div className="icon">
-            <i className="fa fa-briefcase"></i>
-          </div>
-          <span className="time open-sans-font text-uppercase">{val.year}</span>
-          <h5 className="poppins-font text-uppercase">
-            {val.position}
-            <span className="place open-sans-font">{val.companyName}</span>
-          </h5>
-          <ul className="details-list">
-            {val.details.map((detail, index) => {
-              const [boldPart, regularPart] = detail.split(': ', 2);
-              return (
-                <li key={index} className="open-sans-font">
-                  <strong>{boldPart} :</strong> {regularPart}
-                </li>
-              );
-            })}
-          </ul>
-        </li>
-      ))}
-    </ul>
-  );
+   return (
+      <ul>
+         {experienceContent.map((val, i) => (
+            <li key={i}>
+               <div className="icon">
+                  <i className="fa fa-briefcase"></i>
+               </div>
+               <span className="time open-sans-font text-uppercase">
+                  {val.year}
+               </span>
+               <h5 className="poppins-font text-uppercase">
+                  {val.position}
+                  <span className="place open-sans-font">
+                     {val.companyName}
+                  </span>
+               </h5>
+               <ul className="details-list">
+                  {val.details.map((detail, index) => {
+                     const [boldPart, regularPart] = detail.split(": ", 2);
+                     return (
+                        <li key={index} className="open-sans-font">
+                           <strong>{boldPart} :</strong> {regularPart}
+                        </li>
+                     );
+                  })}
+               </ul>
+            </li>
+         ))}
+      </ul>
+   );
 };
 
 export default Experience;

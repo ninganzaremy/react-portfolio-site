@@ -117,16 +117,16 @@ const Hero = () => {
                <p>{heroContent.heroDescription}</p>
             </motion.div>
             <motion.div className="try-me" variants={itemVariants}>
-               <p>🚀 Want to take a shot on me? </p>
+               <p>🚀 Why not team up for something groundbreaking? </p>
 
                <div className="typewriter-container">
                   <TypewriterComponent
                      options={{
                         strings: [
-                           "🤝 Let's try something together!",
-                           "🏗️ We can build interesting stuff!",
-                           "🔥 Ready to innovate?",
-                           "🎨 Let's create something amazing!",
+                           "Let's craft the future together!",
+                           "We can build solutions that matter!",
+                           "Ready to push boundaries?",
+                           "Let's innovate and create something unforgettable!",
                         ],
                         autoStart: true,
                         loop: true,

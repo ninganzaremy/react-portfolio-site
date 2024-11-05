@@ -54,5 +54,6 @@
   "devDependencies": {
     "netlify-cli": "^16.4.2",
     "sass": "^1.52.2"
-  }
+  },
+  "packageManager": "yarn@4.5.1"
 }
