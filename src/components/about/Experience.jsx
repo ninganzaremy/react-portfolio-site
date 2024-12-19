@@ -3,16 +3,25 @@ import React from "react";
 const experienceContent = [
    {
       year: "   01/2022 - Present",
+      position: "Software Engineer ",
+      companyName: "American Express",
+      details: [
+         "➤ UInnovative Project Contributions: Collaborating on impactful projects at American Express, leveraging modern technologies such as Java, Spring Boot, React, and AWS to deliver high-quality solutions that enhance user and system efficiency.",
+         "➤ Scalable System Development: Designing and building scalable, cloud-optimized systems using Java, Spring Boot, React, and AWS, ensuring high performance, reliability, and maintainability across platforms.",
+      ],
+   },
+   {
+      year: "   01/2022 - 12/2024",
       position: "FullStack Software Developer ",
       companyName: "Arizona State University",
       details: [
-         "➤ UI/UX Enhancement: Developing intuitive, responsive UI components using React.js, JavaScript (ES6+), HTML5, CSS3, and Sass, driving improved user engagement.",
-         "➤ Performance Optimization: Restructuring legacy code and implementing efficient front-end patterns, leading to streamlined performance and reduced load times.",
-         "➤ Scalable Web Applications: Building robust, scalable web applications using Java, and Vue/React, ensuring high performance across platforms.",
-         "➤ Server-Side Optimization: Optimizing backend functionality to reduce processing times, significantly enhancing the performance of search engine and key applications.",
-         "➤ Cross-Functional Collaboration: Collaborating with project managers, designers, and engineers in agile sprints to drive continuous improvements and maintain high code quality.",
-         "➤ Data-Driven Insights: Integrating Google Analytics across web applications to capture real-time data, supporting data-driven decision-making.",
-         "➤ Cloud Solutions & Cost Efficiency: Collaborating on backend optimizations and API integrations using AWS services (S3, Lambda) to improve scalability and reduce infrastructure costs.",
+         "➤ UI/UX Enhancement: Developed intuitive, responsive UI components using React.js, JavaScript (ES6+), HTML5, CSS3, and Sass, improving user engagement.",
+         "➤ Performance Optimization: Restructured legacy code and implemented efficient front-end patterns, reducing load times and improving system performance.",
+         "➤ Scalable Web Applications: Built robust, scalable web applications using Java and Vue/React, ensuring consistent high performance across platforms.",
+         "➤ Server-Side Optimization: Optimized backend functionality, reducing processing times and enhancing key application performance by significant margins.",
+         "➤ Cross-Functional Collaboration: Collaborated with project managers, designers, and engineers in agile sprints to ensure continuous improvement and maintain high code quality.",
+         "➤ Data-Driven Insights: Integrated Google Analytics across applications to capture real-time data, supporting informed decision-making.",
+         "➤ Cloud Solutions & Cost Efficiency: Optimized backend processes and API integrations using AWS services (S3, Lambda) to enhance scalability and reduce infrastructure costs.",
       ],
    },
    {
