@@ -6,7 +6,7 @@ const experienceContent = [
       position: "Software Engineer ",
       companyName: "American Express",
       details: [
-         "➤ UInnovative Project Contributions: Collaborating on impactful projects at American Express, leveraging modern technologies such as Java, Spring Boot, React, and AWS to deliver high-quality solutions that enhance user and system efficiency.",
+         "➤ Innovative Project Contributions: Collaborating on impactful projects at American Express, leveraging modern technologies such as Java, Spring Boot, React, and AWS to deliver high-quality solutions that enhance user and system efficiency.",
          "➤ Scalable System Development: Designing and building scalable, cloud-optimized systems using Java, Spring Boot, React, and AWS, ensuring high performance, reliability, and maintainability across platforms.",
       ],
    },
