@@ -108,7 +108,7 @@ export default function Contact() {
       index="06"
       eyebrow="contact"
       title="Get in touch."
-      lead="Open to senior and staff engineering conversations, agentic-AI collaborations, and RingAnswered partnerships."
+      lead="Open to SDE opportunities and agentic-AI collaborations."
     >
       <div className="contact">
         <Reveal className="contact__left">

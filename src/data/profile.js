@@ -26,9 +26,9 @@ export const profile = {
     source: 'https://github.com/ninganzaremy/react-portfolio-site',
   },
   bio: [
-    'I started in data quality for Apple Maps, moved through QA on Uber\'s support integrations, then spent three years as a full-stack developer at Arizona State University before joining American Express in late 2024.',
-    'Day to day I build the systems other engineers build on: a zero-code validation engine now adopted across multiple teams, an AI test generator, and a RAG pipeline grounded strictly in indexed internal knowledge. I placed #1 in the first round of the 2025 Amex Hackathon with an agentic tool that turns a product requirement into commit-ready code.',
-    'On my own time I run RingAnswered: a multi-tenant agentic receptionist that answers phone and chat, books real appointments into live calendars, and is scored by a supervisor agent after every client conversation. It is a real production system with a paying client, 1,600+ tests, and a release pipeline that refuses to ship red.',
+    'I came to backend engineering through the parts of software most people only notice when they break. I started in data quality, where correctness gets checked one record at a time. As a QA engineer I learned how integrations fail at the seams between systems. Then I spent three years as a full-stack engineer owning production applications end to end. Today I work as a software engineer focused on backend services and APIs. That path is why I treat testing and observability as part of the design, not something added after it.',
+    'Most of what I build is the layer other engineers build on. I designed and delivered a zero-code validation engine. Engineers describe a journey in Gherkin and CSV, and the engine seeds the data, fires the HTTP triggers, polls Kafka and compares the results across tables. Multiple teams have adopted it, and it made test automation more than 80% faster. Alongside it I built an AI BDD test generator that drafts Gherkin scenarios from a user story, and a RAG pipeline that answers only from indexed internal knowledge. My agentic tool that turns a product requirement into commit-ready code took #1 in the first round of the 2025 Amex Hackathon.',
+    'On my own time I build RingAnswered, a multi-tenant agentic receptionist for small businesses. A single GPT-4o tool-calling agent handles phone, web chat and SMS. It books, reschedules and cancels real appointments on live calendars. After every conversation, a supervisor agent scores it against the platform\'s own rules. It runs in production behind 1,600+ tests and a release pipeline that refuses to ship red.',
   ],
   // Shown above the contact channels. Remy owns this sentence; components only render it.
   contactNote: 'Email is the fastest way to reach me. I read everything and reply from Phoenix.',
@@ -49,7 +49,6 @@ export const profile = {
     { school: 'City University of New York', credential: 'Certificate, Software Engineering (CUNY TechWorks)' },
   ],
   highlights: [
-    'Rated Exceptional, 2025 — American Express',
     '#1, first round — American Express Hackathon 2025',
     'Zero-code validation engine adopted across multiple teams',
     'AWS Certified Developer',
