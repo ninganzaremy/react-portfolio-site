@@ -109,7 +109,6 @@ export default function About() {
       index="01"
       eyebrow="about"
       title="From design to on-call."
-      lead={profile.tagline}
       className="about"
     >
       <div className="about__grid">
