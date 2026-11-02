@@ -108,7 +108,7 @@ export default function Contact() {
       index="06"
       eyebrow="contact"
       title="Get in touch."
-      lead="Open to SDE opportunities and agentic-AI collaborations."
+      lead="Open to Software Development Engineering and multi-agent AI systems collaborations."
     >
       <div className="contact">
         <Reveal className="contact__left">
