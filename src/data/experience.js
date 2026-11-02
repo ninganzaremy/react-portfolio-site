@@ -13,7 +13,7 @@ export const experience = [
     bullets: [
       {
         lead: 'Comparison Engine — zero-code journey validation.',
-        text: 'Spring Boot engine (Java 21, Cucumber 7, Resilience4j) that eliminated per-journey Java test code. Engineers write Gherkin + CSV; the engine handles DB seeding, HTTP triggers, Kafka polling, multi-table comparison, DLQ correlation and reporting. New modes are one @Component, zero runner changes. Adopted across multiple teams; accelerated test automation 80%+ and was credited in the 2026 mid-year review with raising the repository\'s engineering-quality bar.',
+        text: 'Spring Boot engine (Java 21, Cucumber 7, Resilience4j) that eliminated per-journey Java test code. Engineers write Gherkin + CSV; the engine handles DB seeding, HTTP triggers, Kafka polling, multi-table comparison, DLQ correlation and reporting. New modes are one @Component, zero runner changes. Adopted across multiple teams; accelerated test automation 80%+.',
       },
       {
         lead: 'Requirement vs. code validation engine.',
