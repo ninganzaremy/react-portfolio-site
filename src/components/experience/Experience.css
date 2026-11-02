@@ -1,0 +1,248 @@
+/* Experience — vertical git-log timeline.
+   Mobile: rail at the left edge, dates inline in the card meta.
+   >= 960px: 180px gutter column holds the dates, rail sits between gutter and card. */
+
+.xp {
+  --xp-rail-x: 5px;              /* center of the 1px rail */
+  --xp-gutter: 0px;
+  --xp-gap: 28px;                /* space from rail to card on mobile */
+  --xp-card-pad: clamp(18px, 2.5vw, 28px);
+  --xp-dot: 10px;
+}
+@media (min-width: 960px) {
+  .xp {
+    --xp-gutter: 180px;
+    --xp-rail-x: 164px;
+    --xp-gap: 40px;
+  }
+}
+
+.xp-log {
+  position: relative;
+  display: grid;
+  gap: clamp(20px, 3vw, 32px);
+  padding-left: var(--xp-gap);
+}
+@media (min-width: 960px) {
+  .xp-log { padding-left: 0; }
+}
+
+/* the rail */
+.xp-log::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--xp-rail-x);
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    rgba(var(--accent-3-rgb), 0.6) 0,
+    var(--border-strong) 120px,
+    var(--border-strong) calc(100% - 80px),
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* ---- entry --------------------------------------------------------------- */
+.xp-entry {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  min-width: 0;
+}
+@media (min-width: 960px) {
+  .xp-entry {
+    grid-template-columns: var(--xp-gutter) minmax(0, 1fr);
+    column-gap: var(--xp-gap);
+  }
+}
+
+/* node on the rail: aligned with the first line of the card header */
+.xp-node {
+  position: absolute;
+  z-index: 1;
+  left: calc(var(--xp-rail-x) - var(--xp-gap) - var(--xp-dot) / 2);
+  top: calc(var(--xp-card-pad) + 5px);
+  width: var(--xp-dot);
+  height: var(--xp-dot);
+  border-radius: 50%;
+  background: var(--surface-3);
+  box-shadow: 0 0 0 3px var(--bg);
+}
+/* on mobile the HEAD pill sits above the card; center the live dot on it */
+.xp-entry--current .xp-node { top: 7px; }
+@media (min-width: 960px) {
+  .xp-node { left: calc(var(--xp-rail-x) - var(--xp-dot) / 2); }
+  .xp-entry--current .xp-node { top: calc(var(--xp-card-pad) + 5px); }
+}
+.xp-entry--past .xp-node { background: var(--text-faint); opacity: 0.55; }
+.xp-entry--current .xp-node {
+  background: var(--accent-3);
+  box-shadow: 0 0 0 3px var(--bg), 0 0 0 0 rgba(var(--accent-3-rgb), 0.55);
+  animation: xp-ring 2.2s var(--ease-out) infinite;
+}
+@keyframes xp-ring {
+  0%   { box-shadow: 0 0 0 3px var(--bg), 0 0 0 0 rgba(var(--accent-3-rgb), 0.55); }
+  70%  { box-shadow: 0 0 0 3px var(--bg), 0 0 0 10px rgba(var(--accent-3-rgb), 0); }
+  100% { box-shadow: 0 0 0 3px var(--bg), 0 0 0 0 rgba(var(--accent-3-rgb), 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .xp-entry--current .xp-node {
+    animation: none;
+    box-shadow: 0 0 0 3px var(--bg), 0 0 0 4px rgba(var(--accent-3-rgb), 0.25);
+  }
+}
+
+/* ---- gutter (dates + HEAD) --------------------------------------------- */
+.xp-gutter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.xp-gutter__dates { display: none; }
+.xp-head {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.04em;
+  color: var(--accent-3);
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(var(--accent-3-rgb), 0.35);
+  background: rgba(var(--accent-3-rgb), 0.08);
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+@media (min-width: 960px) {
+  .xp-gutter {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    padding-top: calc(var(--xp-card-pad) + 2px);
+    padding-right: 36px;
+    text-align: right;
+  }
+  .xp-head { margin-bottom: 2px; }
+  .xp-gutter__dates {
+    display: grid;
+    justify-items: end;
+    gap: 2px;
+    font-size: var(--fs-sm);
+    color: var(--text-dim);
+    line-height: 1.4;
+  }
+  .xp-gutter__arrow { color: var(--text-faint); font-size: var(--fs-xs); }
+  .xp-entry--past .xp-gutter__dates { color: var(--text-faint); }
+}
+
+/* ---- card --------------------------------------------------------------- */
+.xp-card { min-width: 0; }
+.xp-card .card__pad { padding: var(--xp-card-pad); }
+
+.xp-card__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--text);
+}
+.xp-card__hash { color: var(--accent); font-weight: 500; }
+.xp-card__company { color: var(--text); }
+.xp-card__dot { color: var(--text-faint); display: none; }
+.xp-card__title {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--fs-md);
+  letter-spacing: -0.01em;
+  flex-basis: 100%;
+}
+@media (min-width: 560px) {
+  .xp-card__dot { display: inline; }
+  .xp-card__title { font-size: var(--fs-lg); flex-basis: auto; }
+}
+
+.xp-card__meta {
+  margin-top: 6px;
+  font-size: var(--fs-xs);
+  color: var(--text-dim);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.xp-card__meta time { color: var(--text-dim); }
+.xp-card__range,
+.xp-card__dur { white-space: nowrap; }
+.xp-card__arrow { color: var(--accent); }
+
+.xp-card__summary {
+  margin-top: 16px;
+  color: var(--text-dim);
+  font-size: var(--fs-md);
+  line-height: var(--lh-body);
+  max-width: 68ch;
+}
+
+/* bullets */
+.xp-card__bullets {
+  margin-top: 16px;
+  display: grid;
+  gap: 10px;
+}
+.xp-bullet {
+  display: grid;
+  grid-template-columns: 14px 1fr;
+  gap: 10px;
+  align-items: start;
+}
+.xp-bullet p {
+  color: var(--text-dim);
+  font-size: var(--fs-sm);
+  line-height: 1.65;
+  max-width: 72ch;
+}
+.xp-bullet strong { color: var(--text); font-weight: 600; }
+.xp-bullet__marker {
+  color: var(--accent);
+  font-size: var(--fs-md);
+  line-height: 1.4;
+  transform: translateY(1px);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.xp-bullet:hover .xp-bullet__marker { transform: translate(2px, 1px); }
+
+/* stack */
+.xp-card__stack {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ---- older roles are quieter ------------------------------------------- */
+.xp-entry--past .xp-card__title { font-size: var(--fs-md); }
+.xp-entry--past .xp-card__summary { font-size: var(--fs-sm); }
+.xp-entry--past .xp-bullet p { font-size: 0.8125rem; }
+.xp-entry--past .xp-card__hash { color: rgba(var(--accent-rgb), 0.7); }
+.xp-entry--past .xp-card { box-shadow: none; }
+.xp-entry--past .xp-card .chip { opacity: 0.85; }
+
+/* ---- end of log --------------------------------------------------------- */
+.xp-eol {
+  margin-top: clamp(20px, 3vw, 28px);
+  padding-left: var(--xp-gap);
+  font-size: var(--fs-xs);
+  color: var(--text-faint);
+  letter-spacing: 0.02em;
+}
+.xp-eol__prompt { color: var(--accent-3); margin-right: 6px; }
+@media (min-width: 960px) {
+  .xp-eol { padding-left: calc(var(--xp-gutter) + var(--xp-gap)); }
+}

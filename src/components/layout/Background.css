@@ -1,0 +1,83 @@
+/* Background — fixed ambient layer */
+
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--bg);
+}
+
+.bg__grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at center, rgba(var(--line-rgb), 0.18) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: center top;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 35%, #000 20%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 35%, #000 20%, transparent 100%);
+}
+
+.bg__blob {
+  position: absolute;
+  width: 45vw;
+  height: 45vw;
+  min-width: 360px;
+  min-height: 360px;
+  max-width: 820px;
+  max-height: 820px;
+  border-radius: 50%;
+  opacity: 0.26;
+  will-change: transform;
+}
+.bg__blob--cyan {
+  top: -12vw;
+  left: -8vw;
+  background: radial-gradient(circle at 40% 40%, rgba(var(--accent-rgb), 0.7) 0%, rgba(var(--accent-rgb), 0) 62%);
+  animation: bg-drift-a 36s var(--ease-in-out) infinite alternate;
+}
+.bg__blob--violet {
+  right: -12vw;
+  bottom: -14vw;
+  background: radial-gradient(circle at 60% 60%, rgba(var(--accent-2-rgb), 0.7) 0%, rgba(var(--accent-2-rgb), 0) 62%);
+  animation: bg-drift-b 32s var(--ease-in-out) infinite alternate;
+}
+
+@keyframes bg-drift-a {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(12vw, 10vh, 0); }
+}
+@keyframes bg-drift-b {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-10vw, -12vh, 0); }
+}
+
+.bg__glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--accent-rgb), 0.07) 0%, rgba(var(--accent-rgb), 0) 65%);
+  opacity: 0;
+  transition: opacity var(--dur-slow) var(--ease-out);
+  will-change: transform, opacity;
+}
+
+/* keep the edges of the page dark so content always sits on near-black */
+.bg__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 90% 80% at 50% 40%, transparent 50%, rgba(var(--bg-rgb), 0.55) 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg__blob { animation: none; will-change: auto; }
+  .bg__glow { display: none; }
+}
+
+@media (pointer: coarse) {
+  .bg__glow { display: none; }
+}

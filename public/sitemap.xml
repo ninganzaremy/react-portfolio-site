@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://ninganzaremy.com/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://ninganzaremy.com/blog</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ninganzaremy.com/blog/java-reactive-programming</loc></url>
+  <url><loc>https://ninganzaremy.com/blog/aws-certified-developer-associate</loc></url>
+  <url><loc>https://ninganzaremy.com/blog/no-code-low-code-future</loc></url>
+  <url><loc>https://ninganzaremy.com/blog/become-a-software-engineer</loc></url>
+  <url><loc>https://ninganzaremy.com/blog/passive-income-software-engineer</loc></url>
+  <url><loc>https://ninganzaremy.com/blog/better-software-engineer</loc></url>
+  <url><loc>https://ninganzaremy.com/blog/tech-interview-mistakes</loc></url>
+</urlset>

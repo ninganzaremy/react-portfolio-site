@@ -1,0 +1,81 @@
+/* Metrics — full-width proof band directly under the hero */
+
+.metrics {
+  position: relative;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-elev);
+}
+
+/* 1px gap over a border-colored backdrop draws the dividers between cells
+   without per-breakpoint nth-child rules. */
+.metrics__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--border);
+}
+
+.metrics__cell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: clamp(22px, 3.2vw, 34px) clamp(14px, 2vw, 24px);
+  background: var(--bg-elev);
+  transition: background var(--dur) var(--ease-out);
+}
+.metrics__cell:hover { background: var(--surface); }
+.metrics__cell::after {
+  content: '';
+  position: absolute;
+  left: clamp(14px, 2vw, 24px);
+  right: clamp(14px, 2vw, 24px);
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(var(--accent-rgb), 0.6), transparent 70%);
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease-out);
+}
+.metrics__cell:hover::after { opacity: 1; }
+
+.metrics__num {
+  display: flex;
+  align-items: baseline;
+  font-size: clamp(1.7rem, 1.25rem + 1.6vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.metrics__prefix { color: var(--text-dim); font-size: 0.72em; margin-right: 1px; }
+.metrics__suffix { color: var(--accent); font-size: 0.6em; margin-left: 3px; letter-spacing: 0; }
+
+.metrics__label {
+  font-size: var(--fs-sm);
+  line-height: 1.4;
+  color: var(--text-dim);
+  text-wrap: pretty;
+}
+
+.metrics__source {
+  font-size: 11px;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  color: var(--text-dim);
+  text-wrap: pretty;
+}
+
+@media (min-width: 768px) {
+  .metrics__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1280px) {
+  .metrics__grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .metrics__cell { padding-block: 32px; }
+}
