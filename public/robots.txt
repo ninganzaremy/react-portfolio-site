@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ninganzaremy.com/sitemap.xml

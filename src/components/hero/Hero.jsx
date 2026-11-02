@@ -1,211 +1,183 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { motion, useAnimation } from "framer-motion";
-import TypewriterComponent from "typewriter-effect";
+import { useEffect, useMemo, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { ArrowRight, Github } from 'lucide-react';
+import { Button, Chip } from '../ui';
+import { fadeUp, stagger, useMotionSafe } from '../../lib/motion';
+import { profile } from '../../data/profile';
+import Terminal from './Terminal';
+import './Hero.css';
 
-const heroContent = {
-   heroImage: "img/hero/me.png",
-   heroMobileImage: "img/hero/me.png",
-   heroTitleName: "Remy Ninganza",
-   heroDesignation: "Software Engineer",
-   heroDescription:
-      "Innovative Software Development Engineer with over 3 years of experience in full-stack development and cloud-based solutions. I specialize in building scalable, cloud-optimized applications using Java, JavaScript, React, and Spring Boot.",
-   keyTechnologies: {
-      "Front-end": ["React.js", "JavaScript (ES6+)", "HTML5", "CSS3", "Sass"],
-      "Back-end": ["Java", "Spring Boot", "Node.js", "Express.js", "REST APIs"],
-      Database: ["PostgreSQL", "MSSQL", "JPA/Hibernate"],
-      Cloud: ["AWS (EC2, S3, ECS, ECR, CloudWatch)", "Docker"],
-      "Payment Integration": ["Stripe", "PayPal"],
-      "Email Services": ["AWS SES"],
-      Authentication: ["JWT", "Spring Security"],
-      "Database Design": ["PostgreSQL schema modeling"],
-      Testing: ["JUnit", "Jest", "Cypress"],
-      "Version Control": ["Git", "GitHub"],
-      "CI/CD": ["Docker", "Jenkins"],
-      "CVEs Management": ["Dependabot", "Github Workflow"],
-   },
-   achievements: [
-      "Implemented a microservices architecture using Spring Boot, improving system modularity and scalability, making it easier to develop and maintain features.",
-      "Developed a responsive React-based frontend with Redux, reducing load times by 20% and delivering a seamless cross-device user experience.",
-      "Optimized PostgreSQL schema for efficient management of payments, services, and user data, improving data handling efficiency by 25%.",
-      "Integrated Stripe payment gateway with real-time webhooks, improving payment processing efficiency by 30%.",
-      "Implemented secure JWT-based authentication with Spring Security, enhancing platform security.",
-      "Set up CI/CD pipelines using Jenkins and Docker, reducing deployment time by 40% and accelerating production cycles.",
-      "Deployed scalable cloud services using AWS (EC2, S3, ECS, ECR, CloudFront, SES), ensuring 99.9% uptime.",
-      "Streamlined media management with AWS S3, improving image load times by 15%.",
-      "Leveraged AWS SES for automated email notifications, boosting user engagement with important alerts and reminders.",
-      "Developed custom React hooks to enhance state management, reducing redundant code by 10%.",
-   ],
-   commitment:
-      "🔹 I'm committed to crafting clean, maintainable code and continuously advancing my knowledge of the latest technologies. Let's connect and explore how we can drive innovation together!",
-   heroBtn: "more about me",
-};
+const ROLE_INTERVAL_MS = 2600;
+const COORDINATES = '33.4484° N, 112.0740° W';
 
-const Hero = () => {
-   const [isVisible, setIsVisible] = useState(false);
-   const controls = useAnimation();
-   const contentRef = useRef(null);
-   const navigate = useNavigate();
+/** 'UTC−07:00' for the given IANA zone, derived at render time rather than hardcoded. */
+/** Scrolls from the hero to the metrics band, clearing the fixed nav. */
+function scrollPastHero() {
+  const target = document.getElementById('metrics');
+  if (!target) return;
+  const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 64;
+  const top = target.getBoundingClientRect().top + window.scrollY - navH + 1;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.scrollTo({ top, behavior: reduce ? 'auto' : 'smooth' });
+}
 
-   useEffect(() => {
-      const observer = new IntersectionObserver(
-         ([entry]) => {
-            if (entry.isIntersecting) {
-               setIsVisible(true);
-               controls.start("visible");
-            }
-         },
-         { threshold: 0.1 }
-      );
+function tzOffset(timeZone) {
+  try {
+    const part = new Intl.DateTimeFormat('en-US', { timeZone, timeZoneName: 'longOffset' })
+      .formatToParts(new Date())
+      .find((p) => p.type === 'timeZoneName');
+    return (part?.value || 'GMT').replace('GMT', 'UTC').replace('-', '\u2212') || 'UTC';
+  } catch {
+    return 'UTC';
+  }
+}
 
-      if (contentRef.current) {
-         observer.observe(contentRef.current);
-      }
+const clockFormat = new Intl.DateTimeFormat('en-US', {
+  timeZone: profile.timezone,
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit',
+  hourCycle: 'h23',
+  timeZoneName: 'short',
+});
 
-      return () => {
-         if (contentRef.current) {
-            observer.unobserve(contentRef.current);
-         }
-      };
-   }, [controls]);
+/** Live wall clock in Remy's timezone, formatted "HH:MM:SS MST". */
+function useLocalClock() {
+  const [now, setNow] = useState(() => clockFormat.format(new Date()));
+  useEffect(() => {
+    const id = setInterval(() => setNow(clockFormat.format(new Date())), 1000);
+    return () => clearInterval(id);
+  }, []);
+  return now;
+}
 
-   const containerVariants = {
-      hidden: { opacity: 0, y: 50 },
-      visible: {
-         opacity: 1,
-         y: 0,
-         transition: {
-            duration: 0.8,
-            when: "beforeChildren",
-            staggerChildren: 0.2,
-         },
-      },
-   };
+/** Leaf node for the ticking clock, so the per-second re-render stays out of the hero tree. */
+function LocalClock() {
+  const clock = useLocalClock();
+  return <time aria-label={`Local time ${clock}`}>{clock}</time>;
+}
 
-   const itemVariants = {
-      hidden: { opacity: 0, y: 20 },
-      visible: {
-         opacity: 1,
-         y: 0,
-         transition: { duration: 0.5 },
-      },
-   };
+/** Cycles through items; frozen on the first item when disabled. */
+function useRotating(items, intervalMs, enabled) {
+  const [index, setIndex] = useState(0);
+  useEffect(() => {
+    if (!enabled || items.length < 2) return undefined;
+    const id = setInterval(() => setIndex((i) => (i + 1) % items.length), intervalMs);
+    return () => clearInterval(id);
+  }, [items, intervalMs, enabled]);
+  return enabled ? items[index] : items[0];
+}
 
-   return (
-      <motion.div
-         className="home-details-container align-items-center hero-content-wrapper"
-         initial="hidden"
-         animate={controls}
-         variants={containerVariants}
-         ref={contentRef}
-      >
-         <div className="home-details hero-content  col-12 col-lg-8 offset-lg-4  text-center text-lg-star">
-            <motion.img
-               src={heroContent.heroMobileImage}
-               alt="Profile"
-               className="profile-image"
-               variants={itemVariants}
-            />
-            <motion.h1
-               className="text-uppercase poppins-font"
-               variants={itemVariants}
+function Portrait() {
+  return (
+    <span className="hero__avatar">
+      <img src={profile.photo} alt={`Portrait of ${profile.name}`} width="56" height="56" loading="eager" decoding="async" />
+    </span>
+  );
+}
+
+function RoleLine({ reduce }) {
+  const role = useRotating(profile.roles, ROLE_INTERVAL_MS, !reduce);
+  return (
+    <p className="hero__role mono">
+      <span className="sr-only">{profile.roles.join(', ')}</span>
+      <span className="hero__role-glyph" aria-hidden="true">$</span>
+      <span className="hero__role-text" aria-hidden="true">
+        {reduce ? (
+          <span>{role}</span>
+        ) : (
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.span
+              key={role}
+              initial={{ opacity: 0, y: 8, filter: 'blur(4px)' }}
+              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              exit={{ opacity: 0, y: -8, filter: 'blur(4px)' }}
+              transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
             >
-               {heroContent.heroTitleName}
-               <span>{heroContent.heroDesignation}</span>
-            </motion.h1>
-            <motion.div className="hero-description" variants={itemVariants}>
-               <p>{heroContent.heroDescription}</p>
-            </motion.div>
-            <motion.div className="try-me" variants={itemVariants}>
-               <p>🚀 Why not team up for something groundbreaking? </p>
+              {role}
+            </motion.span>
+          </AnimatePresence>
+        )}
+      </span>
+    </p>
+  );
+}
 
-               <div className="typewriter-container">
-                  <TypewriterComponent
-                     options={{
-                        strings: [
-                           "Let's craft the future together!",
-                           "We can build solutions that matter!",
-                           "Ready to push boundaries?",
-                           "Let's innovate and create something unforgettable!",
-                        ],
-                        autoStart: true,
-                        loop: true,
-                        delay: 50,
-                        deleteSpeed: 1,
-                        pauseFor: 2000,
-                        cursor: "",
-                     }}
-                  />
-               </div>
-            </motion.div>
-            <hr className="separator" />
-            <motion.div className="technologies-list" variants={itemVariants}>
-               <h3 className="text-uppercase custom-title text-center mb-0 ft-wt-600">
-                  🌟 Key Technologies
-               </h3>
-               <div className="tech-categories">
-                  {Object.entries(heroContent.keyTechnologies).map(
-                     ([category, technologies], index) => (
-                        <motion.div
-                           key={index}
-                           className="tech-category"
-                           whileHover={{ scale: 1.02 }}
-                           transition={{ type: "spring", stiffness: 300 }}
-                        >
-                           <h4 className="category-title">{category}</h4>
-                           <ul className="tech-items">
-                              {technologies.map((tech, techIndex) => (
-                                 <motion.li
-                                    key={techIndex}
-                                    className="tech-item"
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                 >
-                                    {tech}
-                                 </motion.li>
-                              ))}
-                           </ul>
-                        </motion.div>
-                     )
-                  )}
-               </div>
-            </motion.div>
-            <hr className="separator" />
+export default function Hero() {
+  const reduce = useReducedMotion();
+  const item = useMotionSafe(fadeUp);
+  const list = useMemo(() => stagger(0.08, 0.09), []);
 
-            <motion.div className="achievements-list" variants={itemVariants}>
-               <h3 className="text-uppercase custom-title text-center mb-0 ft-wt-600">
-                  💎 Achievements
-               </h3>
-               <ul className="achievement-items">
-                  {heroContent.achievements.map((achievement, index) => (
-                     <motion.li
-                        key={index}
-                        className="achievement-item"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                     >
-                        <span className="achievement-icon">🏆</span>
-                        <span className="achievement-text">{achievement}</span>
-                     </motion.li>
-                  ))}
-               </ul>
-            </motion.div>
-            <motion.p className="open-sans-font" variants={itemVariants}>
-               {heroContent.commitment}
-            </motion.p>
-            <motion.button
-               className="button"
-               onClick={() => navigate("/about")}
-               variants={itemVariants}
-               whileHover={{ scale: 1.05 }}
-               whileTap={{ scale: 0.95 }}
-            >
-               <span className="button-text">{heroContent.heroBtn}</span>
-               <span className="button-icon fa fa-arrow-right"></span>
-            </motion.button>
-         </div>
-      </motion.div>
-   );
-};
-export default Hero;
+  const nameParts = profile.name.split(' ');
+  const surname = nameParts.pop();
+  const givenNames = nameParts.join(' ');
+
+  const emailHref = `mailto:${profile.email}`;
+  const ringHost = profile.links.ringanswered.replace(/^https?:\/\//, '').replace(/\/$/, '');
+
+  return (
+    <section id="hero" className="hero">
+      <div className="container hero__inner">
+        <motion.div className="hero__copy" variants={list} initial="hidden" animate="show">
+          <motion.div className="hero__id" variants={item}>
+            <Portrait />
+            <div className="hero__id-text">
+              <Chip tone="live">{profile.status}</Chip>
+              <p className="hero__locale mono faint">
+                <span>{profile.location}</span>
+                <span className="hero__locale-sep" aria-hidden="true">·</span>
+                <LocalClock />
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.h1 className="hero__title" variants={item}>
+            {givenNames}{' '}
+            <span className="grad-text">{surname}</span>
+          </motion.h1>
+
+          <motion.div variants={item}>
+            <RoleLine reduce={reduce} />
+          </motion.div>
+
+          <motion.p className="hero__lead lead" variants={item}>
+            {profile.tagline}
+          </motion.p>
+
+          <motion.div className="hero__cta" variants={item}>
+            <Button to="/#projects" variant="primary" iconRight={ArrowRight}>View work</Button>
+            <Button href={profile.links.github} variant="outline" icon={Github}>GitHub</Button>
+          </motion.div>
+
+          <motion.p className="hero__links mono faint" variants={item}>
+            <a href={profile.links.linkedin} target="_blank" rel="noreferrer noopener">linkedin</a>
+            <span aria-hidden="true">·</span>
+            <a href={emailHref}>email</a>
+            <span aria-hidden="true">·</span>
+            <a href={profile.links.ringanswered} target="_blank" rel="noreferrer noopener">{ringHost}</a>
+          </motion.p>
+        </motion.div>
+
+        <motion.div
+          className="hero__term"
+          initial={reduce ? false : { opacity: 0, y: 24, scale: 0.985 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <Terminal />
+        </motion.div>
+      </div>
+
+      <div className="container hero__meta mono faint">
+        <span className="hero__meta-label" aria-hidden="true">{COORDINATES}</span>
+        <span className="hero__meta-rule" aria-hidden="true" />
+        <span className="hero__meta-label hero__meta-tz" aria-hidden="true">{profile.timezone} · {tzOffset(profile.timezone)}</span>
+        <span className="hero__meta-rule" aria-hidden="true" />
+        <button type="button" className="hero__meta-label hero__meta-scroll" onClick={scrollPastHero}>
+          scroll <span aria-hidden="true">↓</span>
+          <span className="sr-only">to key metrics</span>
+        </button>
+      </div>
+    </section>
+  );
+}

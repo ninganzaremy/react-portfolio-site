@@ -554,3 +554,11 @@ replay_pid*
 *.ori
 *.orig
 *.tmp
+# Vite
+build/
+dist/
+.vite/
+.tmp-build-*/
+
+# Claude desktop launch config is personal tooling
+.claude/
